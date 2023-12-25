@@ -47,6 +47,6 @@ void loop() {
   sp3.moveServo(values[2]);
   sp4.moveServo(values[3]);
   sp5.moveServo(values[4]);
-  delay(10);
+
 
 }

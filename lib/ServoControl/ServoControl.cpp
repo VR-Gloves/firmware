@@ -9,10 +9,6 @@ ServoControl::ServoControl(int pin) : pin(pin) {
 
 void ServoControl::moveServo(int percentage) {
   
-  move(pin, percentage);
-}
-
-void move(int pin,int percentage) {
   if (percentage < 0) {
     percentage = 0;
   } else if (percentage > 100) {

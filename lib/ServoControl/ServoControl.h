@@ -11,6 +11,4 @@ private:
   int pin;
 };
 
-void move(int pin, int percentage);
-
 #endif
