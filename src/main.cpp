@@ -7,11 +7,11 @@
 #endif
 
 BluetoothSerial SerialBT;
-const int sp1 = 5;
-const int sp2 = 8;
-const int sp3 = 25;
-const int sp4 = 26;
-const int sp5 = 12;
+ServoControl sp1 = ServoControl(5);
+ServoControl sp2 = ServoControl(8);
+ServoControl sp3 = ServoControl(25);
+ServoControl sp4 = ServoControl(26);
+ServoControl sp5 = ServoControl(12);
 
 void setup() {
   Serial.begin(115200);
@@ -42,11 +42,11 @@ void loop() {
     }
   Serial.println("");
 
-  move(sp1,values[0]);
-  move(sp2,values[1]);
-  move(sp3,values[2]);
-  move(sp4,values[3]);
-  move(sp5,values[4]);
+  sp1.moveServo(values[0]);
+  sp2.moveServo(values[1]);
+  sp3.moveServo(values[2]);
+  sp4.moveServo(values[3]);
+  sp5.moveServo(values[4]);
   delay(10);
 
 }

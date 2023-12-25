@@ -1,6 +1,16 @@
 #include "ServoControl.h"
 
+
 Servo servo = Servo();
+
+ServoControl::ServoControl(int pin) : pin(pin) {
+  servo.attach(pin);
+}
+
+void ServoControl::moveServo(int percentage) {
+  
+  move(pin, percentage);
+}
 
 void move(int pin,int percentage) {
   if (percentage < 0) {
