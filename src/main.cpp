@@ -1,4 +1,4 @@
-#include "ServoControl.h"
+#include "FingerControl.h"
 #include <Servo.h>
 #include <BluetoothSerial.h>
 
@@ -7,16 +7,19 @@
 #endif
 
 BluetoothSerial SerialBT;
-ServoControl sp1 = ServoControl(5);
-ServoControl sp2 = ServoControl(8);
-ServoControl sp3 = ServoControl(25);
-ServoControl sp4 = ServoControl(26);
-ServoControl sp5 = ServoControl(12);
+FingerControl sp1 = FingerControl(13,23);
+FingerControl sp2 = FingerControl(14,24);
+FingerControl sp3 = FingerControl(15,25);
+FingerControl sp4 = FingerControl(12,22);
+FingerControl sp5 = FingerControl(26,21);
+
+
 
 void setup() {
   Serial.begin(115200);
   SerialBT.begin("Glove_R");
   SerialBT.setTimeout(100);
+  
 }
 
 int values[5];
@@ -33,14 +36,31 @@ void loop() {
         values[i] = receivedString.toInt();
       }
     }
+
   } 
 
+  if(SerialBT.available()){
+    int data_array[] = {sp1.fingerPos(), 
+                        sp2.fingerPos(),
+                        sp3.fingerPos(),
+                        sp4.fingerPos(),
+                        sp5.fingerPos()};
+    byte byte_array[sizeof(data_array)/sizeof(int)];
 
-  for(int i=0;i<5;i++){
+    for(int i = 0; i < sizeof(data_array)/sizeof(int); i++) {
+      byte_array[i] = (byte)data_array[i];
+    }
+
+    SerialBT.write(byte_array, sizeof(byte_array));
+
+
+  }
+
+  /* for(int i=0;i<5;i++){
     Serial.print(values[i]);
     Serial.print("\t");
     }
-  Serial.println("");
+  Serial.println(""); */
 
   sp1.moveServo(values[0]);
   sp2.moveServo(values[1]);
@@ -49,4 +69,6 @@ void loop() {
   sp5.moveServo(values[4]);
 
 
-}
+  
+
+} 
