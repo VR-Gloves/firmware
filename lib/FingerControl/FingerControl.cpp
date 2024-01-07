@@ -5,7 +5,7 @@ Servo servo = Servo();
 
 FingerControl::FingerControl(int Servo_pin, int Pot_pin) : Servo_pin(Servo_pin), Pot_pin(Pot_pin) {
   servo.attach(Servo_pin);
-  pinMode(Pot_pin,INPUT);
+
 }
 
 int FingerControl::fingerPos(){
