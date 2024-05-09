@@ -19,17 +19,18 @@ String device_name = "GloveR";
 
 BluetoothSerial SerialBT;
 
-FingerControl sp1 = FingerControl(13,32);
-FingerControl sp2 = FingerControl(14,33);
-FingerControl sp3 = FingerControl(15,36);
-FingerControl sp4 = FingerControl(12,37);
-FingerControl sp5 = FingerControl(26,38);
+FingerControl sp1 = FingerControl(27,32);
+FingerControl sp2 = FingerControl(26,15);
+FingerControl sp3 = FingerControl(25,13);
+FingerControl sp4 = FingerControl(33,12);
+FingerControl sp5 = FingerControl(4,14);
 
 
 
 void setup() {
   Serial.begin(115200);
   SerialBT.begin(device_name);
+  Serial.printf("started");
   SerialBT.setTimeout(100);
   pinMode(sp1.Pot_pin,INPUT);
   pinMode(sp2.Pot_pin,INPUT);
@@ -58,24 +59,24 @@ void loop() {
     } 
     
 
-    SerialBT.print(sp1.fingerPos());
-    SerialBT.print(' ');
-    SerialBT.print(sp2.fingerPos());
-    SerialBT.print(' '); 
-    SerialBT.print(sp3.fingerPos());
-    SerialBT.print(' '); 
-    SerialBT.print(sp4.fingerPos());
-    SerialBT.print(' '); 
-    SerialBT.println(sp5.fingerPos());
-    delay(10);
+    Serial.print(sp1.fingerPos());
+    Serial.print(' ');
+    Serial.print(sp2.fingerPos());
+    Serial.print(' '); 
+    Serial.print(sp3.fingerPos());
+    Serial.print(' '); 
+    Serial.print(sp4.fingerPos());
+    Serial.print(' '); 
+    Serial.println(sp5.fingerPos());
+    delay(100);
 
 
   if(mod==1){
-  sp1.moveServo(values[0]);delay(10);
-  sp2.moveServo(values[1]);delay(10);
-  sp3.moveServo(values[2]);delay(10);
-  sp4.moveServo(values[3]);delay(10);
-  sp5.moveServo(values[4]);delay(10);
+  sp1.moveServo(values[0]);delay(100);
+  sp2.moveServo(values[1]);delay(100);
+  sp3.moveServo(values[2]);delay(100);
+  sp4.moveServo(values[3]);delay(100);
+  sp5.moveServo(values[4]);delay(100);
   }
 
   
